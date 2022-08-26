@@ -4,41 +4,65 @@ using UnityEngine;
 
 public class PlayerTwoControls : MonoBehaviour
 {
+
     private float horizontal2 = 0;
     private float vertical2 = 0;
 
     [Header("Player Stats")]
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotationValue = 0.5f;
+    [SerializeField] private GameObject lazerPreview;
 
-    // Start is called before the first frame update
-    void Start()
+    private LazerLogicGirl lazerLogicGirl;
+    private void Awake()
     {
-
+        //Find the script for the lazer and set the lazer preview off
+        lazerLogicGirl = GameObject.FindGameObjectWithTag("GirlsLazer").GetComponent<LazerLogicGirl>();
+        lazerPreview.SetActive(false);
     }
-
     // Update is called once per frame
     void Update()
     {
-        //Change the rotation of the player to the left
-        if (Input.GetKey(KeyCode.U))
+        //Disable movement while firing the lazer
+        if (!lazerLogicGirl.isActive)
         {
-            transform.Rotate(0, -rotationValue, 0);
+            //Change the rotation of the player to the left
+            if (Input.GetKey(KeyCode.U))
+            {
+                transform.Rotate(0, -rotationValue * Time.deltaTime, 0);
+            }
+            //Change the rotation of the player to the right
+            if (Input.GetKey(KeyCode.O))
+            {
+                transform.Rotate(0, rotationValue * Time.deltaTime, 0);
+            }
+            //Show a preview of the lazer
+            if (Input.GetKey(KeyCode.Space))
+            {
+                lazerPreview.SetActive(true);
+            }
         }
-        //Change the rotation of the player to the right
-        if (Input.GetKey(KeyCode.O))
+
+        //Fire the lazer
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            transform.Rotate(0, rotationValue, 0);
+            lazerPreview.SetActive(false);
+            lazerLogicGirl.isActive = true;
         }
     }
 
     private void FixedUpdate()
     {
-        //Sets the movement input J & L for Horizontal and I & K for Vertical
-        horizontal2 = Input.GetAxis("Horizontal2") * Time.fixedDeltaTime * speed;
-        vertical2 = Input.GetAxis("Vertical2") * Time.fixedDeltaTime * speed;
+        //Disable movement while firing the lazer
+        if (!lazerLogicGirl.isActive)
+        {
+            //Sets the movement input A & D for Horizontal and S & W for Vertical
+            horizontal2 = Input.GetAxis("Horizontal2") * Time.fixedDeltaTime * speed;
+            vertical2 = Input.GetAxis("Vertical2") * Time.fixedDeltaTime * speed;
 
-        //Move the player according to the movement input
-        transform.Translate(horizontal2, 0, vertical2);
+            //Move the player according to the movement input
+            transform.Translate(horizontal2, 0, vertical2);
+        }
+
     }
 }

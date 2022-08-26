@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Boy
   - BoysLazer
+  - Girl
+  - GirlsLazer
   layers:
   - Default
   - TransparentFX

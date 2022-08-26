@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LazerCollision : MonoBehaviour
+public class LazerCollisionBoy : MonoBehaviour
 {
-    private LazerLogic lazerLogic;
+    private LazerLogicBoy lazerLogic;
     private void Awake()
     {
-        lazerLogic = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogic>();
+        lazerLogic = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogicBoy>();
     }
     //Reset the position of the lazer
     private void OnCollisionEnter(Collision collision)

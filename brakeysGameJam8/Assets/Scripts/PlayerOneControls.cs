@@ -11,19 +11,20 @@ public class PlayerOneControls : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotationValue = 0.5f;
-    [SerializeField] private GameObject lazerReview;
+    [SerializeField] private GameObject lazerPreview;
 
-    private LazerLogic lazerLogic;
+    private LazerLogicBoy lazerLogicBoy;
     private void Awake()
     {
-        lazerLogic = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogic>();
-        lazerReview.SetActive(false);
+        //Find the script for the lazer and set the lazer preview off
+        lazerLogicBoy = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogicBoy>();
+        lazerPreview.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
         //Disable movement while firing the lazer
-        if (!lazerLogic.isActive)
+        if (!lazerLogicBoy.isActive)
         {
             //Change the rotation of the player to the left
             if (Input.GetKey(KeyCode.Q))
@@ -35,24 +36,25 @@ public class PlayerOneControls : MonoBehaviour
             {
                 transform.Rotate(0, rotationValue * Time.deltaTime, 0);
             }
+            //Show a preview of the lazer
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                lazerReview.SetActive(true);
+                lazerPreview.SetActive(true);
             }
         }
        
         //Fire the lazer
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            lazerReview.SetActive(false);
-            lazerLogic.isActive = true;
+            lazerPreview.SetActive(false);
+            lazerLogicBoy.isActive = true;
         }
     }
 
     private void FixedUpdate()
     {
         //Disable movement while firing the lazer
-        if (!lazerLogic.isActive)
+        if (!lazerLogicBoy.isActive)
         {
             //Sets the movement input A & D for Horizontal and S & W for Vertical
             horizontal = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * speed;

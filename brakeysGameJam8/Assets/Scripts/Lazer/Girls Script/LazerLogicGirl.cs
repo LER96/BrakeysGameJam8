@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class LazerLogic : MonoBehaviour
+public class LazerLogicGirl : MonoBehaviour
 {
     private readonly float lazerSpeed = 150f;
     private float lazerLifeTime = 1f;
@@ -37,7 +36,7 @@ public class LazerLogic : MonoBehaviour
             StopAllCoroutines();
             callOnce = false;
         }
-       
+
     }
     //Reseting the razer position
     public void ResetLazerPosition()
