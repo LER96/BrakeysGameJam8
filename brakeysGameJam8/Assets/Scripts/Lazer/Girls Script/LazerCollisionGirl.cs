@@ -16,5 +16,10 @@ public class LazerCollisionGirl : MonoBehaviour
         {
             lazerLogicGirl.ResetLazerPosition();
         }
+        else if (collision.gameObject.CompareTag("GirlsEnemy"))
+        {
+            Destroy(collision.gameObject, 3);
+            lazerLogicGirl.ResetLazerPosition();
+        }
     }
 }

@@ -11,14 +11,14 @@ public class PlayerOneControls : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotationValue = 0.5f;
-    [SerializeField] private GameObject lazerPreview;
+    [SerializeField] private GameObject lazerPreviewBoy;
 
     private LazerLogicBoy lazerLogicBoy;
     private void Awake()
     {
         //Find the script for the lazer and set the lazer preview off
         lazerLogicBoy = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogicBoy>();
-        lazerPreview.SetActive(false);
+        lazerPreviewBoy.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -39,14 +39,14 @@ public class PlayerOneControls : MonoBehaviour
             //Show a preview of the lazer
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                lazerPreview.SetActive(true);
+                lazerPreviewBoy.SetActive(true);
             }
         }
        
         //Fire the lazer
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            lazerPreview.SetActive(false);
+            lazerPreviewBoy.SetActive(false);
             lazerLogicBoy.isActive = true;
         }
     }
