@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerOneControls : MonoBehaviour
 {
-    
+    [SerializeField] private GameManagerScript gameManager;
     private float horizontal = 0;
     private float vertical = 0;
 
@@ -64,5 +64,18 @@ public class PlayerOneControls : MonoBehaviour
             transform.Translate(horizontal, 0, vertical);
         }
       
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("GirlsEnemy"))
+        {
+            //restart the scene
+            StartCoroutine(gameManager.RestartScene());
+
+            //Playing the death animation
+
+            //Disable the script
+            this.enabled = false;
+        }
     }
 }
