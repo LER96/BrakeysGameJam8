@@ -30,7 +30,5 @@ public class CameraLogic : MonoBehaviour
             cameraPositionZ = boyPosition.transform.position.z - 15;
         }
         cameraGameobject.transform.position = new Vector3(0, 30, cameraPositionZ);
-
-
     }
 }
