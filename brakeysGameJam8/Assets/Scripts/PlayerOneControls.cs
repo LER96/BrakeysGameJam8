@@ -11,35 +11,56 @@ public class PlayerOneControls : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotationValue = 0.5f;
+    [SerializeField] private GameObject lazerReview;
 
-    // Start is called before the first frame update
-    void Start()
+    private LazerLogic lazerLogic;
+    private void Awake()
     {
-       
+        lazerLogic = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogic>();
+        lazerReview.SetActive(false);
     }
-
     // Update is called once per frame
     void Update()
     {
-        //Change the rotation of the player to the left
-        if (Input.GetKey(KeyCode.Q))
+        //Disable movement while firing the lazer
+        if (!lazerLogic.isActive)
         {
-            transform.Rotate(0, -rotationValue, 0);
+            //Change the rotation of the player to the left
+            if (Input.GetKey(KeyCode.Q))
+            {
+                transform.Rotate(0, -rotationValue * Time.deltaTime, 0);
+            }
+            //Change the rotation of the player to the right
+            if (Input.GetKey(KeyCode.E))
+            {
+                transform.Rotate(0, rotationValue * Time.deltaTime, 0);
+            }
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                lazerReview.SetActive(true);
+            }
         }
-        //Change the rotation of the player to the right
-        if (Input.GetKey(KeyCode.E))
+       
+        //Fire the lazer
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            transform.Rotate(0, rotationValue, 0);
+            lazerReview.SetActive(false);
+            lazerLogic.isActive = true;
         }
     }
 
     private void FixedUpdate()
     {
-        //Sets the movement input A & D for Horizontal and S & W for Vertical
-        horizontal = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * speed;
-        vertical = Input.GetAxis("Vertical") * Time.fixedDeltaTime * speed;
+        //Disable movement while firing the lazer
+        if (!lazerLogic.isActive)
+        {
+            //Sets the movement input A & D for Horizontal and S & W for Vertical
+            horizontal = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * speed;
+            vertical = Input.GetAxis("Vertical") * Time.fixedDeltaTime * speed;
 
-        //Move the player according to the movement input
-        transform.Translate(horizontal, 0, vertical);
+            //Move the player according to the movement input
+            transform.Translate(horizontal, 0, vertical);
+        }
+      
     }
 }
