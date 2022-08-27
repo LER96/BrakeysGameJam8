@@ -61,8 +61,6 @@ public class TargetTrigger : MonoBehaviour
                 wallCollider.enabled = true;
                 wallSkin.enabled = true;
             }
-        
-
         }
         isHit = false;
 
