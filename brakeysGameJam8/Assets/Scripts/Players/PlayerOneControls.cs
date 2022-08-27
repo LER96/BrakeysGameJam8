@@ -14,12 +14,13 @@ public class PlayerOneControls : MonoBehaviour
     [SerializeField] private GameObject lazerPreviewBoy;
 
     private LazerLogicBoy lazerLogicBoy;
-    [SerializeField] private Rigidbody boyRigidBody;
+    private Rigidbody boyRigidBody;
     private void Awake()
     { 
         //Find the script for the lazer and set the lazer preview off
         lazerLogicBoy = GameObject.Find("Pivot_Lazer_Boy").GetComponent<LazerLogicBoy>();
         lazerPreviewBoy.SetActive(false);
+        boyRigidBody = gameObject.GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void Update()
@@ -97,6 +98,7 @@ public class PlayerOneControls : MonoBehaviour
         }
  
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))

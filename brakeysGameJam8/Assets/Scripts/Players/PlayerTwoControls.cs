@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerTwoControls : MonoBehaviour
 {
     [Header("Objects to Connect")]
-    [SerializeField] private GameManagerScript gameManager;
-    [SerializeField] private Rigidbody girlRigidBody;
+    [SerializeField] private GameManagerScript gameManager;  
     [SerializeField] private GameObject lazerPreviewGirl;
 
     private float horizontal2 = 0;
@@ -18,12 +17,14 @@ public class PlayerTwoControls : MonoBehaviour
 
 
     private LazerLogicGirl lazerLogicGirl;
+    private Rigidbody girlRigidBody;
 
     private void Awake()
     {
         //Find the script for the lazer and set the lazer preview off
         lazerLogicGirl = GameObject.Find("Pivot_Lazer_Girl").GetComponent<LazerLogicGirl>();
         lazerPreviewGirl.SetActive(false);
+        girlRigidBody = gameObject.GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void Update()

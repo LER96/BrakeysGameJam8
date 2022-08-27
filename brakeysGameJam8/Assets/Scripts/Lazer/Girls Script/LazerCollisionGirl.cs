@@ -29,7 +29,7 @@ public class LazerCollisionGirl : MonoBehaviour
         else if (collision.gameObject.CompareTag("GirlsTarget"))
         {
             lazerLogicGirl.ResetLazerPosition();
-            Destroy(collision.gameObject, 2.15f);
+            Destroy(collision.gameObject, 7f);
         }
         else if (collision.gameObject.CompareTag("BoysTarget"))
         {
