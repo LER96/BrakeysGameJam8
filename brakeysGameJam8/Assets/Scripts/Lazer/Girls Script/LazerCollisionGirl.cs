@@ -35,5 +35,9 @@ public class LazerCollisionGirl : MonoBehaviour
         {
             lazerLogicGirl.ResetLazerPosition();
         }
+        else if (collision.gameObject.CompareTag("BothTarget"))
+        {
+            lazerLogicGirl.ResetLazerPosition();
+        }
     }
 }

@@ -34,5 +34,9 @@ public class LazerCollisionBoy : MonoBehaviour
         {
             lazerLogicBoy.ResetLazerPosition();
         }
+        else if (collision.gameObject.CompareTag("BothTarget"))
+        {
+            lazerLogicBoy.ResetLazerPosition();
+        }
     }
 }
