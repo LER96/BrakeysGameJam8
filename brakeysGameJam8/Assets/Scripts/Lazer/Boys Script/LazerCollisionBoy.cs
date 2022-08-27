@@ -18,7 +18,7 @@ public class LazerCollisionBoy : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("BoysEnemy"))
         {
-            Destroy(collision.gameObject, 0.5f);
+            Destroy(collision.gameObject);
             lazerLogicBoy.ResetLazerPosition();
         }
         else if (collision.gameObject.CompareTag("GirlsEnemy"))
