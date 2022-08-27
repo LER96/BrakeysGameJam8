@@ -11,6 +11,8 @@ TagManager:
   - GirlsLazer
   - GirlsEnemy
   - BoysEnemy
+  - BoysTarget
+  - GirlsTarget
   layers:
   - Default
   - TransparentFX

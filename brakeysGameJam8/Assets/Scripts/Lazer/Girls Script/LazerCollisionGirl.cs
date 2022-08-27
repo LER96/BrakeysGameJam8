@@ -5,9 +5,10 @@ using UnityEngine;
 public class LazerCollisionGirl : MonoBehaviour
 {
     private LazerLogicGirl lazerLogicGirl;
+    
     private void Awake()
     {
-        lazerLogicGirl = GameObject.FindGameObjectWithTag("GirlsLazer").GetComponent<LazerLogicGirl>();
+        lazerLogicGirl = GameObject.Find("Pivot_Lazer_Girl").GetComponent<LazerLogicGirl>();
     }
     //Reset the position of the lazer
     private void OnCollisionEnter(Collision collision)
@@ -22,6 +23,15 @@ public class LazerCollisionGirl : MonoBehaviour
             lazerLogicGirl.ResetLazerPosition();
         }
         else if (collision.gameObject.CompareTag("BoysEnemy"))
+        {
+            lazerLogicGirl.ResetLazerPosition();
+        }
+        else if (collision.gameObject.CompareTag("GirlsTarget"))
+        {
+            lazerLogicGirl.ResetLazerPosition();
+            Destroy(collision.gameObject, 2.15f);
+        }
+        else if (collision.gameObject.CompareTag("BoysTarget"))
         {
             lazerLogicGirl.ResetLazerPosition();
         }

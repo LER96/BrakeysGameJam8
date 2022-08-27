@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerTwoControls : MonoBehaviour
 {
+    [Header("Objects to Connect")]
     [SerializeField] private GameManagerScript gameManager;
+    [SerializeField] private Rigidbody girlRigidBody;
+    [SerializeField] private GameObject lazerPreviewGirl;
 
     private float horizontal2 = 0;
     private float vertical2 = 0;
@@ -12,18 +15,29 @@ public class PlayerTwoControls : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotationValue = 0.5f;
-    [SerializeField] private GameObject lazerPreviewGirl;
+
 
     private LazerLogicGirl lazerLogicGirl;
+
     private void Awake()
     {
         //Find the script for the lazer and set the lazer preview off
-        lazerLogicGirl = GameObject.FindGameObjectWithTag("GirlsLazer").GetComponent<LazerLogicGirl>();
+        lazerLogicGirl = GameObject.Find("Pivot_Lazer_Girl").GetComponent<LazerLogicGirl>();
         lazerPreviewGirl.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
+        if (girlRigidBody.velocity.y < -15)
+        {
+            //restart the scene
+            StartCoroutine(gameManager.RestartScene());
+
+            //Play SFX death
+
+            //Disable the script
+            this.enabled = false;
+        }
         //Disable movement while firing the lazer
         if (!lazerLogicGirl.isActive)
         {
@@ -74,6 +88,8 @@ public class PlayerTwoControls : MonoBehaviour
             StartCoroutine(gameManager.RestartScene());
 
             //Playing the death animation
+
+            //Play SFX death
 
             //Disable the script
             this.enabled = false;

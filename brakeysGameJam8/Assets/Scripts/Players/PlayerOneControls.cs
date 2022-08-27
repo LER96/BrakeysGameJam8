@@ -14,15 +14,26 @@ public class PlayerOneControls : MonoBehaviour
     [SerializeField] private GameObject lazerPreviewBoy;
 
     private LazerLogicBoy lazerLogicBoy;
+    [SerializeField] private Rigidbody boyRigidBody;
     private void Awake()
-    {
+    { 
         //Find the script for the lazer and set the lazer preview off
-        lazerLogicBoy = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogicBoy>();
+        lazerLogicBoy = GameObject.Find("Pivot_Lazer_Boy").GetComponent<LazerLogicBoy>();
         lazerPreviewBoy.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
+        if (boyRigidBody.velocity.y < -15)
+        {
+            //restart the scene
+            StartCoroutine(gameManager.RestartScene());
+
+            //Play SFX death
+
+            //Disable the script
+            this.enabled = false;
+        }
         //Disable movement while firing the lazer
         if (!lazerLogicBoy.isActive)
         {
@@ -41,6 +52,7 @@ public class PlayerOneControls : MonoBehaviour
             {
                 lazerPreviewBoy.SetActive(true);
             }
+         
         }
        
         //Fire the lazer
@@ -73,6 +85,8 @@ public class PlayerOneControls : MonoBehaviour
             StartCoroutine(gameManager.RestartScene());
 
             //Playing the death animation
+
+            //Play SFX death
 
             //Disable the script
             this.enabled = false;

@@ -7,7 +7,7 @@ public class LazerCollisionBoy : MonoBehaviour
     private LazerLogicBoy lazerLogicBoy;
     private void Awake()
     {
-        lazerLogicBoy = GameObject.FindGameObjectWithTag("BoysLazer").GetComponent<LazerLogicBoy>();
+        lazerLogicBoy = GameObject.Find("Pivot_Lazer_Boy").GetComponent<LazerLogicBoy>();
     }
     //Reset the position of the lazer
     private void OnCollisionEnter(Collision collision)
@@ -22,6 +22,15 @@ public class LazerCollisionBoy : MonoBehaviour
             lazerLogicBoy.ResetLazerPosition();
         }
         else if (collision.gameObject.CompareTag("GirlsEnemy"))
+        {
+            lazerLogicBoy.ResetLazerPosition();
+        }
+        else if (collision.gameObject.CompareTag("BoysTarget"))
+        {
+            lazerLogicBoy.ResetLazerPosition();
+            Destroy(collision.gameObject, 2.15f);
+        }
+        else if (collision.gameObject.CompareTag("GirlsTarget"))
         {
             lazerLogicBoy.ResetLazerPosition();
         }
