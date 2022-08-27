@@ -5,12 +5,11 @@ using UnityEngine;
 public class TargetTrigger : MonoBehaviour
 {
     [SerializeField] private Transform loweredWall;
-    [SerializeField] private GameObject antiChesse;
     private BoxCollider wallCollider;
     private MeshRenderer wallSkin;
     private readonly float loweringSpeed = -5;
     private float loweringAmount = 0;
-    private bool lowerTheWall = false;
+    public bool lowerTheWall = false;
     private int hitCounter = 0;
     private bool isHit;
 
@@ -48,7 +47,6 @@ public class TargetTrigger : MonoBehaviour
                 lowerTheWall = true;
                 wallCollider.enabled = false;
                 wallSkin.enabled = false;
-                Destroy(antiChesse, 2.8f);
                 Destroy(loweredWall.gameObject, 10f);
             }
             else
@@ -73,7 +71,6 @@ public class TargetTrigger : MonoBehaviour
             lowerTheWall = true;
             wallCollider.enabled = false;
             wallSkin.enabled = false;
-            Destroy(antiChesse, 2.8f);
             Destroy(loweredWall.gameObject, 10f);
         }
         if((collision.gameObject.CompareTag("BoysLazer")) && (this.CompareTag("BoysTarget")))
@@ -81,7 +78,6 @@ public class TargetTrigger : MonoBehaviour
             lowerTheWall = true;
             wallCollider.enabled = false;
             wallSkin.enabled = false;
-            Destroy(antiChesse, 2.8f);
             Destroy(loweredWall.gameObject, 10f);
         }
         if ((collision.gameObject.CompareTag("BoysLazer")) && (this.CompareTag("BothTarget")))

@@ -83,7 +83,7 @@ public class PlayerTwoControls : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("BoysEnemy"))
+        if (collision.gameObject.CompareTag("GirlsEnemy") || collision.gameObject.CompareTag("BoysEnemy"))
         {
             //restart the scene
             StartCoroutine(gameManager.RestartScene());
