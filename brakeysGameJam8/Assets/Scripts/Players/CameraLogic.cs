@@ -23,11 +23,11 @@ public class CameraLogic : MonoBehaviour
             //Detect who is behind and set the camera accordingly
             if (boyPosition.transform.position.z > girlPosition.transform.position.z)
             {
-                cameraPositionZ = girlPosition.transform.position.z - 15;
+                cameraPositionZ = girlPosition.transform.position.z - 25;
             }
             else
             {
-                cameraPositionZ = boyPosition.transform.position.z - 15;
+                cameraPositionZ = boyPosition.transform.position.z - 25;
             }
             //Move the camera to that position
             cameraGameobject.transform.position = new Vector3(0, 30, cameraPositionZ);       

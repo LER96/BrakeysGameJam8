@@ -94,5 +94,16 @@ public class PlayerTwoControls : MonoBehaviour
             //Disable the script
             this.enabled = false;
         }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            speed = 0.5f;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            speed = 5;
+        }
     }
 }
